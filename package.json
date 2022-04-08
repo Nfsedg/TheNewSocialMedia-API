@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "NODE_ENV=test nodemon index.js",
     "start": "NODE_ENV=production node index.js",

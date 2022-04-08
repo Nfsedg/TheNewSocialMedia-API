@@ -10,8 +10,10 @@ const comments = require("./controllers/comments");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("../app/build"));
 
+app.use("/", (req, res) => {
+	res.send("Hello from the root");
+});
 app.use("/login", login);
 app.use("/user", user);
 app.use("/posts", post);
