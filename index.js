@@ -11,7 +11,7 @@ const comments = require("./controllers/comments");
 app.use(cors());
 app.use(express.json());
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
 	res.send("Hello from the root");
 });
 app.use("/login", login);
