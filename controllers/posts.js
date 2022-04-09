@@ -32,15 +32,18 @@ postRouter.post("/", userExtractor, async (req, res) => {
 			user: searchUser._id,
 			date: new Date()
 		}); 
-    
-		await newNote.save();
+		const noteSaved = await newNote.save();
 
 		searchUser.posts = searchUser.posts.concat(newNote._id);
 		await User.updateOne({ _id: searchUser._id }, {
-			posts: searchUser.post
+			posts: searchUser.posts
+		});
+		const postWithUserInfo = await Post.findById(noteSaved.id).populate("user", {
+			name: 1,
+			username: 1
 		});
     
-		res.status(201).send(newNote);
+		res.status(201).send(postWithUserInfo);
 	} catch(e) {
 		console.error(e.message);
 		res.status(404).end();
