@@ -71,8 +71,35 @@ postRouter.delete("/:postId", userExtractor, async (req, res) => {
 
 		res.status(204).end();
 		
-	} catch (e) {
-		console.error(e);
+	} catch {
+		res.status(401).json({ error: "Something was wrong" });
+	}
+});
+
+postRouter.put("/", userExtractor, async (req, res) => {
+	const { userId } = req;
+	const { content, postId } = req.body;
+	
+	try {
+		const searchUser = await User.findById(userId);
+		const findPost = await Post.findById(postId);
+
+		if(searchUser._id.toString() === findPost.user.toString()) {
+			findPost.content = content;
+	
+			await Post.updateOne({ _id: findPost._id }, {
+				content: findPost.content
+			});
+
+			res.status(201).send(findPost);
+		} else {
+			res.status(401).end();
+		}
+
+	} catch (err) {
+		res.status(401).json({
+			error: "incorrect information"
+		});
 	}
 });
 
