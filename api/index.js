@@ -1,14 +1,14 @@
 require("dotenv").config();
-require("./mongo");
+require("../mongo");
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const path = require("path");
-const login = require("./controllers/login");
-const user = require("./controllers/users");
-const post = require("./controllers/posts");
-const comments = require("./controllers/comments");
-const upload = require("./controllers/upload");
+const login = require("../controllers/login");
+const user = require("../controllers/users");
+const post = require("../controllers/posts");
+const comments = require("../controllers/comments");
+const upload = require("../controllers/upload");
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
+	res.setHeader("Content-Type", "text/html");
+	res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
 	res.send("Hello from the root");
 });
 app.use("/login", login);
