@@ -4,7 +4,7 @@ const path = require("path");
 const multer = require("multer");
 const upload = multer({ dest: "static/images" });
 const ImageFile = require("../models/ImageFile");
-const {rootPath} = require("../config");
+const {rootPath} = require("../settings");
 
 uploadRouter.get("/", async (req, res) => {
 	const image = await ImageFile.find({});
