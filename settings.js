@@ -1,5 +1,3 @@
-const apiConfig = {
-	rootPath: __dirname
-};
+const rootPath = __dirname;
 
-module.exports = apiConfig;
+export default rootPath;

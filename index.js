@@ -13,7 +13,7 @@ const upload = require("./controllers/upload");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "images")));
 
 app.get("/", (req, res) => {
 	res.send("Hello from the root");

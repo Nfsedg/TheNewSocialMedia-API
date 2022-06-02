@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "scripts": {
-    "dev": "NODE_ENV=test nodemon ./api/index.js",
-    "start": "NODE_ENV=production node ./api/index.js",
+    "dev": "NODE_ENV=test nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=test jest"
   },
-  "keywords": [],
+  "keywords": [
+    "social api"
+  ],
   "author": "Edgar Pech <edgaropech@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
