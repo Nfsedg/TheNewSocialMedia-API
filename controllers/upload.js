@@ -2,7 +2,7 @@ const uploadRouter = require("express").Router();
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
-const upload = multer({ dest: "public/images" });
+const upload = multer({ dest: "static/images" });
 const ImageFile = require("../models/ImageFile");
 const {rootPath} = require("../config");
 
@@ -28,7 +28,7 @@ uploadRouter.post("/", upload.single("image"), async (req, res) => {
 		name: "name",
 		desc: "desc",
 		img: {
-			data: fs.readFileSync(path.join(rootPath + "/public/images/" + req.file.filename)),
+			data: fs.readFileSync(path.join(rootPath + "/static/images/" + req.file.filename)),
 			contentType: "image/*",
 		}
 	});

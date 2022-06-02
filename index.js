@@ -13,11 +13,9 @@ const upload = require("./controllers/upload");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "static")));
 
 app.get("/", (req, res) => {
-	res.setHeader("Content-Type", "text/html");
-	res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
 	res.send("Hello from the root");
 });
 app.use("/login", login);
