@@ -4,15 +4,17 @@ const User = require("../models/User");
 const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 
-commentsRouters.get("/:id", async (req, res) => {
-	const {id} = req.params;
+commentsRouters.get("/:id/:limit/:offset", async (req, res) => {
+	let {id, limit, offset} = req.params;
+
+	if(!limit) limit = 0;
+	if(!offset) offset = 0;
 	try {
 		const comments = await Comment.find({
 			post: id
-		});
+		}).limit(limit).skip(limit);
 		res.send(comments);
 	} catch (e) {
-		console.error(e.message);
 		res.status(404).end();
 	}
 });
@@ -34,8 +36,6 @@ commentsRouters.post("/", userExtractor, async (req, res) => {
 				post: findPost._id,
 				content,
 			});
-		} else {
-			console.error("Information did not found");
 		}
 
 		await newComment.save();
@@ -47,7 +47,6 @@ commentsRouters.post("/", userExtractor, async (req, res) => {
 
 		res.status(201).send(newComment);        
 	} catch(e) {
-		console.error(e);
 		res.status(404).end();
 	}
 
