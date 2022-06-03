@@ -17,6 +17,7 @@
   "author": "Edgar Pech <edgaropech@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@vercel/build-utils": "4.0.0",
     "@vercel/node": "1.14.0",
     "dotenv": "16.0.0",
     "eslint": "8.11.0",
@@ -30,6 +31,6 @@
     "jsonwebtoken": "8.5.1",
     "mongoose": "6.2.7",
     "mongoose-unique-validator": "3.0.0",
-    "multer": "1.4.4"
+    "multer": "1.4.5-lts.1"
   }
 }
