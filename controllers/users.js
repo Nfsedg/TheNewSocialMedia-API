@@ -39,7 +39,7 @@ usersRouter.post("/", async (req, res) => {
 				username,
 				name,
 				passwordHash,
-				bio: "",
+				biography: "",
 				timestamps: new Date().getTime(),
 				profileImage: undefined,
 				posts: []
@@ -70,16 +70,17 @@ usersRouter.post("/", async (req, res) => {
 
 usersRouter.put("/", userExtractor, async (req, res) => {
 	const { userId } = req;
-	const { bio, name } = req.body;
+	const { biography, name } = req.body;
 
 	try {
-		const updatedUser = await User.updateOne({id: userId}, {
-			bio,
+		const searchUser = await User.findById(userId);
+		const updatedUser = await User.updateOne({_id: searchUser._id}, {
+			biography: biography,
 			name
 		});
+
 		res.status(204).send(updatedUser);
 	} catch(e) {
-		console.log(e);
 		res.status(402).send(e);
 	}
 });

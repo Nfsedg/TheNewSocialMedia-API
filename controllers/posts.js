@@ -6,7 +6,8 @@ const userExtractor = require("../middleware/userExtractor");
 postRouter.get("/", async (req, res) => {
 	const allPost = await Post.find({}).populate("user", {
 		name: 1,
-		username: 1
+		username: 1,
+		profileImage: 1
 	});
 
 	res.send(allPost);
